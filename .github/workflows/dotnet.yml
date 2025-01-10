@@ -5,7 +5,7 @@ on:
 
 env:
   SOLUTION_NAME: app-dotnet
-  SOLUTION_FILE: app-dotnet.csproj
+  SOLUTION_FILE: 03-app-dotnet/app-dotnet.csproj
 
 jobs:
   build:
