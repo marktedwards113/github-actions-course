@@ -1,6 +1,7 @@
 name: Build
 
-workflow_dispatch
+on:
+  workflow_dispatch:
 
 env:
   SOLUTION_NAME: app-dotnet
