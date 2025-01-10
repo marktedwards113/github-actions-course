@@ -16,27 +16,27 @@ jobs:
       - name: Source Code Checkout
         uses: actions/checkout@v4
 	
-	    - name: Setup MSBuild
-	      uses: microsoft/setup-msbuild@v1
+      - name: Setup MSBuild
+	uses: microsoft/setup-msbuild@v1
 
-	    - name: Setup NuGet
-	      uses: NuGet/setup-nuget@v1.0.2
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.2
 	  
-	    - name: Navigate to Workspace
-	      run: cd $GITHUB_WORKSPACE
+      - name: Navigate to Workspace
+	run: cd $GITHUB_WORKSPACE
 
-	    - name: Create Build Directory
-	      run: mkdir _webdeploy
+      - name: Create Build Directory
+	run: mkdir _webdeploy
 	  
-	    - name: Restore Packages
-	      run: nuget restore ${{ env.SOLUTION_FILE }}
+      - name: Restore Packages
+	run: nuget restore ${{ env.SOLUTION_FILE }}
 
-	    - name: Build Solution
-	      run: |
+      - name: Build Solution
+	run: |
           msbuild.exe ${{ env.SOLUTION_FILE }} /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:configuration="Release" /p:PackageLocation="../_webdeploy"
-		
-	    - name: Upload artifact
-	      uses: actions/upload-artifact@v4
-		      with:
-		        name: ${{ env.SOLUTION_NAME }}
+		 
+      - name: Upload artifact
+	uses: actions/upload-artifact@v4
+	  with:
+	    name: ${{ env.SOLUTION_NAME }}
 		        path: "./_webdeploy"
