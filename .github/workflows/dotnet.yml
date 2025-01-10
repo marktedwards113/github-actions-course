@@ -32,7 +32,8 @@ jobs:
     - name: Build Solution
       run: msbuild.exe ${{ env.SOLUTION_FILE }} /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:configuration="Release" /p:PackageLocation="../_webdeploy"
       
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
+    - name: Upload artifact for deployment job
+      uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.SOLUTION_NAME }}
+          name: ${{env.SOLUTION_NAME}}
+          path: "./_webdeploy"
